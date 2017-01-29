@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StructuredStorage", "StructuredStorage\StructuredStorage.vcxproj", "{A17358A2-B11B-4E9F-938F-3AB344333BAC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StructuredStorageTests", "StructuredStorageTests\StructuredStorageTests.vcxproj", "{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A17358A2-B11B-4E9F-938F-3AB344333BAC} = {A17358A2-B11B-4E9F-938F-3AB344333BAC}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +26,14 @@ Global
 		{A17358A2-B11B-4E9F-938F-3AB344333BAC}.Release|x64.Build.0 = Release|x64
 		{A17358A2-B11B-4E9F-938F-3AB344333BAC}.Release|x86.ActiveCfg = Release|Win32
 		{A17358A2-B11B-4E9F-938F-3AB344333BAC}.Release|x86.Build.0 = Release|Win32
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Debug|x64.ActiveCfg = Debug|x64
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Debug|x64.Build.0 = Debug|x64
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Debug|x86.ActiveCfg = Debug|Win32
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Debug|x86.Build.0 = Debug|Win32
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Release|x64.ActiveCfg = Release|x64
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Release|x64.Build.0 = Release|x64
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Release|x86.ActiveCfg = Release|Win32
+		{3A8B4A4C-2F62-4290-A478-3F05EE51EA83}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
