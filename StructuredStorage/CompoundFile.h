@@ -12,7 +12,7 @@ namespace StructuredStorage {
 	};
 
 	enum class SeekMode {
-		Begin,
+		Set,
 		Current,
 		End
 	};
@@ -31,7 +31,7 @@ namespace StructuredStorage {
 		void Write(const void* buffer, uint32_t count);
 		void Read(void* buffer, uint32_t count);
 
-		void Seek(uint32_t offset, SeekMode mode = SeekMode::Begin);
+		uint32_t Seek(uint32_t offset, SeekMode mode = SeekMode::Set);
 
 		uint32_t GetSize() const;
 

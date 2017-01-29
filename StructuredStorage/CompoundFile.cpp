@@ -91,6 +91,23 @@ void StructuredFile::Read(void * buffer, uint32_t count) {
 		throw ComException(hr);
 }
 
+uint32_t StructuredFile::Seek(uint32_t offset, SeekMode mode) {
+	LARGE_INTEGER li;
+	li.QuadPart = offset;
+	ULARGE_INTEGER newOffset;
+	auto hr = m_spStream->Seek(li, static_cast<DWORD>(mode), &newOffset);
+	if (FAILED(hr))
+		throw ComException(hr);
+
+	return newOffset.LowPart;
+}
+
+uint32_t StructuredFile::GetSize() const {
+	STATSTG stat = { 0 };
+	m_spStream->Stat(&stat, STATFLAG_NONAME);
+	return stat.cbSize.LowPart;
+}
+
 void StructuredFile::Close() {
 	m_spStream = nullptr;
 }
