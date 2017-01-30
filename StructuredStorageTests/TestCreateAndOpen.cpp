@@ -3,7 +3,19 @@
 #include "..\StructuredStorage\CompoundFile.h"
 #include "..\StructuredStorage\CompoundFileReaderWriter.h"
 
-#pragma comment(lib, "..\\Debug\\StructuredStorage.lib")
+#ifdef _DEBUG
+	#ifdef _WIN64
+	#pragma comment(lib, "..\\x64\\Debug\\StructuredStorage.lib")
+	#else
+	#pragma comment(lib, "..\\Debug\\StructuredStorage.lib")
+	#endif
+#else
+	#ifdef _WIN64
+	#pragma comment(lib, "..\\x64\\Release\\StructuredStorage.lib")
+	#else
+	#pragma comment(lib, "..\\Release\\StructuredStorage.lib")
+	#endif
+#endif
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace StructuredStorage;
