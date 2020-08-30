@@ -46,7 +46,7 @@ public:
 		auto path = L"g:\\temp\\file1.bin";
 		auto file = CompoundFile::Create(path);
 		auto ssfile = file->CreateStructuredFile(L"IntValue");
-		CompoundFileReaderWriter writer(ssfile.get());
+		CompoundFileReaderWriter writer(*ssfile.get());
 		writer.Write(0x1234abcd);
 
 		auto vfile = file->CreateStructuredFile(L"Vector");
@@ -54,7 +54,7 @@ public:
 		for (int i = 0; i < 10; i++)
 			vec.push_back(i * i);
 
-		CompoundFileReaderWriter writer2(vfile.get());
+		CompoundFileReaderWriter writer2(*vfile.get());
 		writer2.Write(vec);
 
 		{
@@ -66,7 +66,7 @@ public:
 			m.insert(std::make_pair(L"twelve", 12));
 			m.insert(std::make_pair(L"zero", 0));
 
-			CompoundFileReaderWriter writer3(mfile.get());
+			CompoundFileReaderWriter writer3(*mfile.get());
 			writer3.Write(m);
 		}
 
@@ -76,20 +76,20 @@ public:
 
 		file = CompoundFile::Open(path);
 		ssfile = file->OpenStructuredFile(L"IntValue");
-		CompoundFileReaderWriter reader(ssfile.get());
+		CompoundFileReaderWriter reader(*ssfile.get());
 		int value;
 		reader.Read(value);
 		Assert::IsTrue(value == 0x1234abcd);
 
 		vfile = file->OpenStructuredFile(L"Vector");
 		vec.clear();
-		CompoundFileReaderWriter reader2(vfile.get());
+		CompoundFileReaderWriter reader2(*vfile.get());
 		reader2.Read(vec);
 		Assert::IsTrue(10 == vec.size());
 
 		auto mfile = file->OpenStructuredFile(L"Map");
 		std::map<std::wstring, int> m;
-		CompoundFileReaderWriter reader3(mfile.get());
+		CompoundFileReaderWriter reader3(*mfile.get());
 		reader3.Read(m);
 
 		Assert::IsTrue(m.size() == 5);

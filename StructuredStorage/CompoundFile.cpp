@@ -76,7 +76,7 @@ void StructuredDirectory::Close() {
 
 void StructuredDirectory::CheckNameLength(const std::wstring & name) const {
 	if (name.size() > 31)
-		throw exception("strcutured directory and file names must be less than 32 characters");
+		throw exception("structured directory and file names must be less than 32 characters");
 }
 
 void StructuredFile::Write(const void * buffer, uint32_t count) {

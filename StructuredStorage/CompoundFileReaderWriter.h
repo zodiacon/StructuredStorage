@@ -8,20 +8,20 @@
 namespace StructuredStorage {
 	class CompoundFileReaderWriter {
 	public:
-		CompoundFileReaderWriter(StructuredFile* file);
+		CompoundFileReaderWriter(StructuredFile& file);
 
 		template<typename T>
 		void Write(const T& value) {
 			static_assert(std::is_pod<T>(), "T must be POD");
 
-			m_File->Write(&value, sizeof(value));
+			m_File.Write(&value, sizeof(value));
 		}
 
 		template<typename T>
 		void Read(T& value) {
 			static_assert(std::is_pod<T>() , "T must be POD");
 
-			m_File->Read(&value, sizeof(value));
+			m_File.Read(&value, sizeof(value));
 		}
 
 		void Write(const std::wstring& value);
@@ -34,7 +34,7 @@ namespace StructuredStorage {
 			auto count = static_cast<uint32_t>(vec.size());
 			Write(count);
 			if (std::is_pod<T>::value) {
-				m_File->Write(vec.data(), count * sizeof(T));
+				m_File.Write(vec.data(), count * sizeof(T));
 			}
 			else {
 				for (const auto& item : vec)
@@ -53,7 +53,7 @@ namespace StructuredStorage {
 
 			vec.resize(count);
 			if (std::is_pod<T>::value) {
-				m_File->Read(vec.data(), count * sizeof(T));
+				m_File.Read(vec.data(), count * sizeof(T));
 			}
 			else {
 				for (uint32_t i = 0; i < count; ++i) {
@@ -95,7 +95,7 @@ namespace StructuredStorage {
 		}
 
 	private:
-		StructuredFile* m_File;
+		StructuredFile& m_File;
 	};
 
 }
